@@ -58,6 +58,20 @@ class Unit:
         # Remove dimensions with a power of 0
         self.dimension = {k: v for k, v in self.dimension.items() if v != 0}
 
-        # Update the symbol if the unit becomes dimensionless
         if not self.dimension:
             self.symbol = ""
+
+
+# Base Units
+Unit.METER = Unit("m", {"length": 1})
+Unit.SECOND = Unit("s", {"time": 1})
+Unit.KILOGRAM = Unit("kg", {"mass": 1})
+
+# Derived Units
+Unit.VELOCITY = Unit.METER / Unit.SECOND  # m/s
+Unit.ACCELERATION = Unit.VELOCITY / Unit.SECOND  # m/s^2
+Unit.FORCE = Unit.KILOGRAM * Unit.ACCELERATION  # kg*m/s^2, Newton
+
+# Constants
+Unit.GRAVITY = Unit("g", {"length": 1, "time": -2})  # m/s^2, gravitational acceleration
+Unit.SPEED_OF_LIGHT = Unit("c", {"length": 1, "time": -1})  # m/s
