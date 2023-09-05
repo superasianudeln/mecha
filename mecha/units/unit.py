@@ -30,17 +30,21 @@ class Unit:
     def __mul__(self, other):
         new_dimension = {}
         for dim in set(self.dimension) | set(other.dimension):
-            new_dimension[dim] = self.dimension.get(dim, 0) + other.dimension.get(dim, 0)
+            power = self.dimension.get(dim, 0) + other.dimension.get(dim, 0)
+            if power != 0:
+                new_dimension[dim] = power
         return Unit(new_dimension)
 
     def __truediv__(self, other):
         new_dimension = {}
         for dim in set(self.dimension) | set(other.dimension):
-            new_dimension[dim] = self.dimension.get(dim, 0) - other.dimension.get(dim, 0)
+            power = self.dimension.get(dim, 0) - other.dimension.get(dim, 0)
+            if power != 0:
+                new_dimension[dim] = power
         return Unit(new_dimension)
 
     def __pow__(self, power):
-        new_dimension = {dim: val * power for dim, val in self.dimension.items()}
+        new_dimension = {dim: val * power for dim, val in self.dimension.items() if val * power != 0}
         return Unit(new_dimension)
 
     def __eq__(self, other):
@@ -63,3 +67,6 @@ class Unit:
 
     def __str__(self):
         return self.unit
+
+    def __repr__(self):
+        return f"Unit({self.dimension})"

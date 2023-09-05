@@ -30,12 +30,17 @@ class PhysicalQuantity:
         else:
             raise ValueError(f"Unsupported type {type(other)} for multiplication with PhysicalQuantity.")
 
+    def __rmul__(self, other):  # This method handles multiplication when the scalar is on the left
+        return self.__mul__(other)
+
     def __truediv__(self, other: Union['PhysicalQuantity', float, int]) -> 'PhysicalQuantity':
         if isinstance(other, (float, int)):
             if other == 0:
                 raise ValueError("Cannot divide by zero")
             return PhysicalQuantity(self.value / other, self.unit)
         elif isinstance(other, PhysicalQuantity):
+            if other.value == 0:
+                raise ValueError("Cannot divide by zero")
             return PhysicalQuantity(self.value / other.value, self.unit / other.unit)
         else:
             raise ValueError(f"Unsupported type {type(other)} for division with PhysicalQuantity.")

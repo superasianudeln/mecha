@@ -9,7 +9,7 @@ class TestUnitMethods(unittest.TestCase):
         unit1 = Unit({'M': 1, 'L': 1, 'T': 0})
         unit2 = Unit({'M': 1, 'L': 1, 'T': 0})
         result = unit1 * unit2
-        expected = Unit({'M': 2, 'L': 2, 'T': 0})
+        expected = Unit({'M': 2, 'L': 2})
         self.assertEqual(result, expected)
 
     def test_mul_different_dimensions(self):
@@ -23,7 +23,7 @@ class TestUnitMethods(unittest.TestCase):
         unit1 = Unit({'M': 1, 'L': 0, 'T': 0})
         unit2 = Unit({'M': 0, 'L': 0, 'T': 0})
         result = unit1 * unit2
-        expected = Unit({'M': 1, 'L': 0, 'T': 0})
+        expected = Unit({'M': 1})
         self.assertEqual(result, expected)
 
     def test_pow_positive_integer(self):
@@ -35,7 +35,7 @@ class TestUnitMethods(unittest.TestCase):
     def test_pow_zero(self):
         unit = Unit({'M': 1, 'L': 1, 'T': 1})
         result = unit ** 0
-        expected = Unit({'M': 0, 'L': 0, 'T': 0})
+        expected = Unit({})
         self.assertEqual(result, expected)
 
     def test_pow_negative_integer(self):
