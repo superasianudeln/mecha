@@ -6,8 +6,16 @@ from mecha.units.unit import Unit
 
 class PhysicalQuantity:
     def __init__(self, value: Union[float, Vector], unit: Unit):
-        self.value = value
-        self.unit = unit
+        self._value = value
+        self._unit = unit
+
+    @property
+    def value(self):
+        return self._value
+
+    @property
+    def unit(self):
+        return self._unit
 
     def _check_units(self, other: 'PhysicalQuantity') -> None:
         if self.unit != other.unit:
@@ -53,8 +61,11 @@ class PhysicalQuantity:
         else:
             return PhysicalQuantity(self.value ** power, self.unit ** power)
 
-    def __eq__(self, other):
+    def __eq__(self, other: 'PhysicalQuantity') -> bool:
         return self.value == other.value and self.unit == other.unit
+
+    def __neg__(self) -> 'PhysicalQuantity':
+        return PhysicalQuantity(-self.value, self.unit)
 
     def __str__(self) -> str:
         return f"{self.value} {self.unit.unit}"
