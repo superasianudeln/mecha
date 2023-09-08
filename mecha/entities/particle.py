@@ -1,14 +1,25 @@
+from typing import Union, Type
+
 from mecha.maths.vector import Vector
-from mecha.units.constants import *
+from mecha.units.constants import KILOGRAM, VELOCITY_UNIT, ACCELERATION_UNIT
 from mecha.units.physical_quantity import PhysicalQuantity
+from mecha.units.unit import Unit
+
+
+def _initialize_property(value: Union[Type[PhysicalQuantity], float, Vector], unit: Unit) -> PhysicalQuantity:
+    if isinstance(value, PhysicalQuantity):
+        return value
+    return PhysicalQuantity(value, unit)
 
 
 class Particle:
-    def __init__(self, position: Vector, mass: float = 1.0, velocity: float = 0.0, acceleration: float = 0.0):
+    def __init__(self, position: Vector, mass: float = 1.0,
+                 velocity: Union[Type[PhysicalQuantity], float, Vector] = 0.0,
+                 acceleration: Union[Type[PhysicalQuantity], float, Vector] = 0.0):
         self._position = position
         self._mass = PhysicalQuantity(mass, KILOGRAM)
-        self._velocity = PhysicalQuantity(velocity, VELOCITY_UNIT)
-        self._acceleration = PhysicalQuantity(acceleration, ACCELERATION_UNIT)
+        self._velocity = _initialize_property(velocity, VELOCITY_UNIT)
+        self._acceleration = _initialize_property(acceleration, ACCELERATION_UNIT)
 
     @property
     def position(self) -> Vector:
@@ -46,4 +57,6 @@ class Particle:
         return (f"Particle(position={self.position}, velocity={self.velocity}, "
                 f"acceleration={self.acceleration}, mass={self.mass})")
 
-    __repr__ = __str__
+    def __repr__(self) -> str:
+        return (f"Particle(position={repr(self.position)}, velocity={repr(self.velocity)}, "
+                f"acceleration={repr(self.acceleration)}, mass={repr(self.mass)})")
