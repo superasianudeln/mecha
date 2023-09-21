@@ -1,11 +1,10 @@
 import unittest
 
-from mecha.units.constants import *
+from mecha.units.constants import METER, SECOND, VELOCITY_UNIT
 from mecha.units.physical_quantity import PhysicalQuantity
 
 
 class TestPhysicalQuantity(unittest.TestCase):
-
     def setUp(self):
         # Define some units for testing
         self.meter = METER
@@ -61,5 +60,5 @@ class TestPhysicalQuantity(unittest.TestCase):
         self.assertEqual(str(self.velocity), "3 m*s^-1")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

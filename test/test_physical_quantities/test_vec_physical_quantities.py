@@ -3,12 +3,11 @@ import unittest
 import numpy as np
 
 from mecha.maths.vector import Vector
-from mecha.units.constants import *
+from mecha.units.constants import METER, SECOND
 from mecha.units.physical_quantity import PhysicalQuantity
 
 
 class TestPhysicalQuantityWithVectors(unittest.TestCase):
-
     def setUp(self):
         # Sample units for testing
         self.unit_a = METER
@@ -76,14 +75,14 @@ class TestPhysicalQuantityWithVectors(unittest.TestCase):
             _ = self.vector_zero.direction
 
     def test_vector_cross_product(self):
-        pq1 = PhysicalQuantity(self.vector_1, self.unit_a)
-        pq2 = PhysicalQuantity(self.vector_2, self.unit_a)
+        PhysicalQuantity(self.vector_1, self.unit_a)
+        PhysicalQuantity(self.vector_2, self.unit_a)
         cross_product_vector = self.vector_1.cross(self.vector_2)
         self.assertEqual(cross_product_vector, Vector(-3, 6, -3))
 
     def test_vector_dot_product(self):
-        pq1 = PhysicalQuantity(self.vector_1, self.unit_a)
-        pq2 = PhysicalQuantity(self.vector_2, self.unit_a)
+        PhysicalQuantity(self.vector_1, self.unit_a)
+        PhysicalQuantity(self.vector_2, self.unit_a)
         dot_product_value = self.vector_1.dot(self.vector_2)
         self.assertEqual(dot_product_value, 32)  # 1*4 + 2*5 + 3*6 = 32
 
@@ -106,10 +105,10 @@ class TestPhysicalQuantityWithVectors(unittest.TestCase):
 
     def test_vector_power(self):
         pq1 = PhysicalQuantity(self.vector_1, self.unit_a)
-        result = pq1 ** 2
-        expected_magnitude = self.vector_1.magnitude ** 2
+        result = pq1**2
+        expected_magnitude = self.vector_1.magnitude**2
         self.assertEqual(result.value, expected_magnitude)
-        self.assertEqual(result.unit, self.unit_a ** 2)
+        self.assertEqual(result.unit, self.unit_a**2)
 
     def test_vector_and_scalar_division(self):
         pq1 = PhysicalQuantity(self.vector_1, self.unit_a)

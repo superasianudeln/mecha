@@ -1,9 +1,9 @@
 # Base Units
 from mecha.units.unit import Unit
 
-METER = Unit({'L': 1})
-SECOND = Unit({'T': 1})
-KILOGRAM = Unit({'M': 1})
+METER = Unit({"L": 1})
+SECOND = Unit({"T": 1})
+KILOGRAM = Unit({"M": 1})
 
 # Derived Units
 VELOCITY_UNIT = METER / SECOND  # m/s

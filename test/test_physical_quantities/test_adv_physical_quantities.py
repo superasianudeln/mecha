@@ -5,13 +5,12 @@ from mecha.units.unit import Unit
 
 
 class TestAdvancedPhysicalQuantity(unittest.TestCase):
-
     def setUp(self):
         # Define some units for testing
-        self.meter = Unit({'L': 1})
-        self.second = Unit({'T': 1})
-        self.meter_per_second = Unit({'L': 1, 'T': -1})
-        self.meter_per_second_squared = Unit({'L': 1, 'T': -2})
+        self.meter = Unit({"L": 1})
+        self.second = Unit({"T": 1})
+        self.meter_per_second = Unit({"L": 1, "T": -1})
+        self.meter_per_second_squared = Unit({"L": 1, "T": -2})
 
         # Define some physical quantities for testing
         self.distance1 = PhysicalQuantity(5, self.meter)
@@ -22,7 +21,7 @@ class TestAdvancedPhysicalQuantity(unittest.TestCase):
 
     def test_complex_operations(self):
         # Test the formula: s = ut + 0.5at^2
-        result = self.velocity * self.time + 0.5 * self.acceleration * self.time ** 2
+        result = self.velocity * self.time + 0.5 * self.acceleration * self.time**2
         self.assertEqual(result.value, 14)
         self.assertEqual(result.unit, self.meter)
 
@@ -42,9 +41,9 @@ class TestAdvancedPhysicalQuantity(unittest.TestCase):
 
     def test_high_power_operations(self):
         # Testing cube of a unit
-        cubed_distance_unit = self.meter ** 3
+        cubed_distance_unit = self.meter**3
         cubed_distance = PhysicalQuantity(125, cubed_distance_unit)
-        result = self.distance1 ** 3
+        result = self.distance1**3
         self.assertEqual(result, cubed_distance)
 
     def test_division_by_zero(self):
@@ -63,8 +62,8 @@ class TestAdvancedPhysicalQuantity(unittest.TestCase):
         zero_distance = PhysicalQuantity(0, self.meter)
         result = self.distance1 * zero_distance
         self.assertEqual(result.value, 0)
-        self.assertEqual(result.unit, self.meter ** 2)
+        self.assertEqual(result.unit, self.meter**2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -5,9 +5,7 @@ import numpy as np
 from mecha.maths.vector import Vector
 
 
-# noinspection PyStatementEffect
 class TestVector(unittest.TestCase):
-
     def setUp(self):
         self.v1 = Vector(1, 2, 3)
         self.v2 = Vector(4, 5, 6)
@@ -98,5 +96,5 @@ class TestVector(unittest.TestCase):
         self.assertEqual(len(result), 3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

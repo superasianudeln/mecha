@@ -4,12 +4,11 @@ from mecha.units.unit import Unit
 
 
 class TestUnit(unittest.TestCase):
-
     def setUp(self):
-        self.unit1 = Unit({'M': 1, 'L': 1, 'T': 0})  # kg*m
-        self.unit2 = Unit({'M': 1, 'L': 1, 'T': 0})  # kg*m
-        self.unit3 = Unit({'M': 1, 'L': 0, 'T': 1})  # kg*s
-        self.unit4 = Unit({'M': 0, 'L': 1, 'T': 1})  # m*s
+        self.unit1 = Unit({"M": 1, "L": 1, "T": 0})  # kg*m
+        self.unit2 = Unit({"M": 1, "L": 1, "T": 0})  # kg*m
+        self.unit3 = Unit({"M": 1, "L": 0, "T": 1})  # kg*s
+        self.unit4 = Unit({"M": 0, "L": 1, "T": 1})  # m*s
 
     def test_compute_unit(self):
         self.assertEqual(str(self.unit1), "kg*m")
