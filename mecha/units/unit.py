@@ -6,21 +6,18 @@ class Unit:
     def compute_unit(self):
         base_units = {"M": "kg", "L": "m", "T": "s"}
 
-        # Generate a list of tuples containing the base unit and its power
         unit_parts = [(base_units[dim], power) for dim, power in self.dimension.items() if power != 0]
 
-        # Sort the list of tuples based on the base unit and then by power
         sorted_unit_parts = sorted(unit_parts, key=lambda x: (x[0], x[1]))
 
-        # Convert the sorted list of tuples to a list of strings
         sorted_unit_strings = [f"{unit}^{power}" if power != 1 else unit for unit, power in sorted_unit_parts]
-        # Join the sorted list of strings to form the final unit string
 
         return "*".join(sorted_unit_strings)
 
     def __add__(self, other):
         if self.dimension != other.dimension:
-            raise ValueError("Dimensions must be identical for addition or subtraction")
+            msg = "Dimensions must be identical for addition or subtraction"
+            raise ValueError(msg)
         # Since dimensions are the same, we can return either unit
         return Unit(self.dimension)
 

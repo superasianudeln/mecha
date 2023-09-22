@@ -1,0 +1,12 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+
+  }
+  

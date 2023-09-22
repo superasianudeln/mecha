@@ -54,3 +54,26 @@ line-length = 120
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+useLibraryCodeForTypes = true
+reportDuplicateImport = true
+reportInconsistentConstructor = true
+reportInvalidStubStatement = true
+reportOverlappingOverload = true
+reportPropertyTypeMismatch = true
+reportUntypedClassDecorator = true
+reportUntypedFunctionDecorator = true
+reportUntypedNamedTuple = true
+reportGeneralTypeIssues = true
+reportMissingModuleSource = true
+reportOptionalCall = true
+reportOptionalIterable = true
+reportOptionalMemberAccess = true
+reportOptionalOperand = true
+reportOptionalSubscript = true
+reportPrivateImportUsage = true
+reportUnboundVariable = true
