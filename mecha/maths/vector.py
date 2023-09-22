@@ -6,13 +6,14 @@ class Vector:
         self.vector = np.array([x, y, z])
 
     @property
-    def magnitude(self) -> float:
+    def magnitude(self) -> np.float64:
         return np.linalg.norm(self.vector)
 
     @property
     def direction(self) -> np.ndarray:
         if self.magnitude == 0:
-            raise ValueError("Zero vector does not have a direction")
+            error_msg = "Zero vector does not have a direction"
+            raise ValueError(error_msg)
         return self.vector / self.magnitude
 
     def __add__(self, other: "Vector") -> "Vector":
@@ -34,7 +35,8 @@ class Vector:
 
     def __truediv__(self, scalar: float) -> "Vector":
         if scalar == 0:
-            raise ValueError("Cannot divide by zero")
+            msg = "Cannot divide by zero"
+            raise ValueError(msg)
         return Vector(*(self.vector / scalar))
 
     def __str__(self) -> str:
